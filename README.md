@@ -16,6 +16,9 @@ El análisis se realizó utilizando Python, aprovechando las siguientes librerí
 * NumPy: Utilizada para cálculos matemáticos y manipulación de datos.
 * Matplotlib: Empleada para la visualización de las señales y resultados.
 
+## Organizacion del codigo
+Todo el codigo empleado se encuentra en un unico archivo: main.py. Los archivos de audio empleados se encuentran dentro de la carpeta "content".
+
 ## Conclusiones
 Se encontro gran similitud entre las señales aunque las herramientas resultaron insuficientes para garantizart de que se tratan de una misma vocal. Se sugiere investigar las formantes o usar tecnicas de Machine Learning.
 
