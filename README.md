@@ -63,7 +63,7 @@ Los análisis mostraron una alta similitud entre las señales en las frecuencias
     ```bash
     python main.py
 
-4. Revisa las gráficas generadas en tu entorno local o en la carpeta output/.
+4. Revisa las gráficas generadas en tu entorno local o en la carpeta `output/`.
 
 Nota: Aunque el proyecto fue desarrollado inicialmente en Google Colab, esta versión consolidada es funcional en cualquier entorno Python. Para una mejor experiencia interactiva, se recomienda adaptar el script a un Jupyter Notebook.
 
