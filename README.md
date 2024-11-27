@@ -23,7 +23,9 @@ Todo el codigo empleado se encuentra en un unico archivo: main.py. Los archivos 
 Se encontro gran similitud entre las señales aunque las herramientas resultaron insuficientes para garantizart de que se tratan de una misma vocal. Se sugiere investigar las formantes o usar tecnicas de Machine Learning.
 
 ## Autores
-Este proyecto fue realizado por Franco Muñoz (https://github.com/Neokai94) y Germán Kousal (https://github.com/GermanKousal).
+Este proyecto fue realizado por
+* Franco Muñoz: https://github.com/Neokai94
+* Germán Kousal: https://github.com/GermanKousal
 
 ## Aclaraciones sobre este repositorio
 Debido a que se producen una serie de 9 imagenes en este codigo, es probable que la visualizacion de las mismas sea mas comodo usando Jupyter Notebook. El codigo original se hizo en la plataforma Colab de Google. Esta es una version unificada del codigo original.
