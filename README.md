@@ -27,7 +27,7 @@ El análisis incluyó las siguientes técnicas:
 
 Este proyecto fue desarrollado en Python con las siguientes librerías:  
 - **[Librosa](https://librosa.org/doc/latest/index.html):** Extracción de características y espectrogramas.  
-- **[SciPy](https://scipy.org/):** Correlación cruzada.  
+- **[SciPy](https://scipy.org/):** Correlación cruzada y busqueda de picos.  
 - **[NumPy](https://numpy.org/):** Manipulación de datos, cálculos numéricos y herramientas para FFT.  
 - **[Matplotlib](https://matplotlib.org/):** Visualización de señales y resultados.
 

@@ -17,7 +17,6 @@ audio_files = {
 def main():
     # Proceso y ploteo de señales y FFT
     for name, file in audio_files.items():
-        print(f"Processing envelope and FFT for {name}...")
         process_signal(file, name)
 
     # Proceso y ploteo de correlaciones cruzadas de frecuencias
@@ -25,13 +24,12 @@ def main():
 
     # Proceso y ploteo de espectrogramas
     for name, file in audio_files.items():
-        print(f"Processing spectrogram for {name}...")
         process_spectrogram(name, file)
 
 
 # Extraccion de puntos para dibujar envolventes
 # Esencialmenmte se busca maximos y minimos locales
-# para tramos comprendidos entre dmin y dmax de longitud
+# para tramos de tamaño dmin para minimos y dmax para maximos
 # Adaptado de: https://stackoverflow.com/a/60402647
 def hl_envelopes_idx(s, dmin=1, dmax=1):
 
@@ -41,11 +39,11 @@ def hl_envelopes_idx(s, dmin=1, dmax=1):
     # Minimo local
     lmax = (np.diff(np.sign(np.diff(s))) < 0).nonzero()[0] + 1
 
-    # Global minima within dmin-sized chunks
+    # Minimos de los tramos de tamaño dmin
     lmin = lmin[
         [i + np.argmin(s[lmin[i : i + dmin]]) for i in range(0, len(lmin), dmin)]
     ]
-    # Global maxima within dmax-sized chunks
+    # Maximos de los tramos de tamaño dmax
     lmax = lmax[
         [i + np.argmax(s[lmax[i : i + dmax]]) for i in range(0, len(lmax), dmax)]
     ]
@@ -172,7 +170,7 @@ def process_spectrogram(name, audio_path):
     times = np.arange(Sxx_dB.shape[1]) * hop_length / sr
     frequencies = librosa.fft_frequencies(sr=sr, n_fft=n_fft)
     ax2.pcolormesh(times, frequencies, Sxx_dB, shading="gouraud", cmap="inferno")
-    ax2.set_title("Power Spectrogram (en dB)")
+    ax2.set_title("Espectrograma (en dB)")
     ax2.set_xlabel("Tiempo [s]")
     ax2.set_ylabel("Frecuencia [Hz]")
     ax2.set_ylim(0, 4000)
@@ -184,7 +182,7 @@ def process_spectrogram(name, audio_path):
     X, Y = np.meshgrid(times, frequencies[:cota])
     Z = Sxx_dB[:cota]
     ax3.plot_surface(X, Y, Z, cmap="inferno", edgecolor="none")
-    ax3.set_title("Spectrograma 3D de Potencia")
+    ax3.set_title("Espectrograma 3D de Potencia")
     ax3.set_xlabel("Tiempo [s]", labelpad=10)
     ax3.set_ylabel("Frecuencia [Hz]", labelpad=10)
     ax3.set_zlabel("Potencia [dB]")
@@ -226,10 +224,10 @@ def process_cross_correlation(audio_files):
                 {
                     "Audio 1": name1,
                     "Audio 2": name2,
-                    "Max Peak Frequency (Hz)": peak_freqs[np.argmax(peak_values)],
-                    "Max Peak Correlation": max(peak_values),
-                    "All Peaks (Hz)": list(peak_freqs),
-                    "All Peak Values": list(peak_values),
+                    "Frequencia (Hz) de picos": peak_freqs[np.argmax(peak_values)],
+                    "Correlacion de picos": max(peak_values),
+                    "Todos los picos (Hz)": list(peak_freqs),
+                    "Todos los valores de picos": list(peak_values),
                 }
             )
 
@@ -243,7 +241,7 @@ def process_cross_correlation(audio_files):
 
             # Destacar picos en la grafica
             plt.scatter(
-                peak_freqs, peak_values, color="red", label="Peaks"
+                peak_freqs, peak_values, color="red", label="Picos"
             )
 
             # Valores de frecuencia de los picos
@@ -257,9 +255,9 @@ def process_cross_correlation(audio_files):
                     ha="center",
                 )
 
-            plt.title(f"Cross-Correlation of Fourier Transforms {name1} vs {name2}")
-            plt.xlabel("Frequency (Hz)")
-            plt.ylabel("Normalized Correlation")
+            plt.title(f"Correlacion Cruzada de Transformada de Fourier: {name1} vs {name2}")
+            plt.xlabel("Frecuencia (Hz)")
+            plt.ylabel("Correlacion Normalizada")
             plt.xlim(0, 4000)
             plt.legend()
             plt.grid()
